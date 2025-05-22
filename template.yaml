@@ -1,0 +1,29 @@
+input_variables: [text]
+output_parser: null
+template: |
+  Проанализируй следующий текст и извлеки все пары наименованных сущностей, относящихся к следующим классам:
+  - PER — персоналии (люди)
+  - ORG — организации
+  - LOC — географические объекты
+  - EVT — события
+  - PRO — процессы
+
+  Представь результат в виде JSON, соответствующего следующей модели Pydantic:
+
+  ```python
+  from pydantic import BaseModel, Field
+  from typing import List
+
+  class Pair(BaseModel):
+      entity: str = Field(..., description="Наименованная сущность")
+      answer: str = Field(..., description="Класс сущности (PER, ORG, LOC, EVT, PRO)")
+
+  class Response(BaseModel):
+      pairs: List[Pair]
+  ```
+
+  Текст для анализа:
+  {text}
+
+template_format: f-string
+_type: prompt
