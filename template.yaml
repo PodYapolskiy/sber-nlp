@@ -25,5 +25,6 @@ template: |
   Текст для анализа:
   {text}
 
+  Выведи ТОЛЬКО JSON, соответсвующей pydantic модели и ничего больше!
 template_format: f-string
 _type: prompt
